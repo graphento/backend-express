@@ -19,4 +19,15 @@ router.get('/', function(req, res, next) {
   res.status(201).json(newUser);
 })
 
+.get('/:id', function(req, res, next) {
+  const user = users.items.find(user => user.id == req.params.id);
+  if (user) {
+    res.send(user);
+  }
+  else {
+    res.sendStatus(404);
+  }
+})
+
+
 module.exports = router;
