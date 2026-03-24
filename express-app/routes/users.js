@@ -33,14 +33,14 @@ async function insert_user_with_id(id, name) {
 async function get_user_by_id(id) {
   return new Promise((res, rej) => {
     db.get("SELECT id, name FROM users WHERE id = ?", [id], (err, row) => {
-      err ? rej(err) : res(row);
+      err || !row ? rej(err) : res(row);
     })
   })
 }
 
 create_users_if_not_exist()
-  .then(() => insert_user_with_id(1, 'FRONTENDER_1'))
-  .then(() => insert_user_with_id(2, 'FRONTENDER_2'))
+  .then(() => insert_user_with_id(1, 'Михайлов Даниил'))
+  .then(() => insert_user_with_id(2, 'Бочкарёва Дарья'))
   .catch(() => {})
 
 
